@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">News</string>
+    <string name="title_activity_home_cycle">HomeCycleActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="error_inter_net">No Internet please open your Internet to can get last News !</string>
+    <string name="warning">Warning</string>
+    <string name="try_again">Try Again</string>
+    <string name="cancel">Cancel</string>
+    <string name="Skip">Skip</string>
+    <string name="sign_up_text">Sign Up</string>
+    <string name="login_text">Login</string>
+    <string name="hello_enter_app">The easiest way to daily News, we \n will ensure comfort and save your time</string>
+    <string name="developBy">"Developed By "</string>
+    <string name="my_last_news">Last News</string>
+    <string name="locate_your_news">Locate Your News</string>
+    <string name="date_from">From</string>
+    <string name="Done">Done</string>
+    <string name="search">Search</string>
+    <string name="last_news">Last News</string>
+    <string name="no_result">No Results Found</string>
+    <string name="select_type">Select Type</string>
+    <string name="invalid_university">Please select type first</string>
+    <string name="description">Description</string>
+</resources>

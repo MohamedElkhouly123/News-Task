@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/_20sdp"
+        app:cardCornerRadius="@dimen/_10sdp">
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="vertical"
+         >
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/blue"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/locate_your_news"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp"
+                android:layout_gravity="center"
+                />
+        </FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:padding="@dimen/_10sdp"
+            android:gravity="center">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_home_locate_news_from_date_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="@string/date_from">
+
+                <EditText
+                    android:id="@+id/fragment_home_locate_news_from_date_edtx_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:drawableStart="@drawable/ic_baseline_date_range_24"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:editable="false"
+                    android:inputType="none"
+                    android:focusable="false"
+                    style="@style/EditTextLocateNews"
+                    android:ems="10"
+                    >
+
+                </EditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_home_locate_news_type_ly"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/ic_baseline_article_24"
+                android:drawablePadding="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:hint="@string/select_type"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:errorTextAppearance="@style/error_appearance"
+                >
+                <AutoCompleteTextView
+                    android:id="@+id/fragment_home_locate_news_type_auto"
+                    android:editable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    style="@style/EditTextLocateNews"
+                    >
+                </AutoCompleteTextView>
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/fragment_home_locate_news_done_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/blueBottom"
+                android:padding="@dimen/_5sdp"
+                android:layout_gravity="bottom|center"
+                android:background="@drawable/shap1_buttom_blue"
+                android:text="@string/Done"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:textSize="@dimen/_12ssp"
+                android:gravity="center"
+                />
+        </LinearLayout>
+        </ScrollView>
+     </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

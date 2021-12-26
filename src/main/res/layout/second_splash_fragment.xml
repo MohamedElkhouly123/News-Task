@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:fillViewport="true"
+    tools:context=".view.main.views.activities.SplashCycleActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark_gray"
+
+        >
+
+        <LinearLayout
+            android:id="@+id/fragment_splash2_buttom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_90sdp"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/_15sdp"
+            android:paddingEnd="@dimen/_15sdp">
+
+            <Button
+                android:id="@+id/fragment_solash2_login_btu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_18sdp"
+                android:background="@drawable/shap1_buttom_blue"
+                style="@style/blueBottom"
+                android:text="@string/login_text"
+                />
+
+            <Button
+                android:id="@+id/fragment_solash2_rejester_btu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_18sdp"
+                android:background="@drawable/no_background_buttom"
+                style="@style/blueBottom"
+                android:text="@string/sign_up_text"
+                app:backgroundTint="@null"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:id="@+id/Fragment_splash2_skip"
+                android:elevation="@dimen/_5sdp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:text="@string/Skip"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="top"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:id="@+id/fragment_splash2_img_layout"
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+
+
+                android:paddingBottom="@dimen/_55sdp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_65sdp"
+                    android:layout_marginEnd="@dimen/_65sdp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="NEWS"
+                        android:textColor="@color/white"
+                        style="@style/textStyle"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_30ssp"
+                        />
+                    <TextView
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_gravity="left|center_vertical"
+                        style="@style/textStyle"
+                        android:text="N"
+                        android:background="@drawable/shap1_buttom_blue"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_30ssp"
+                        />
+                </FrameLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_27sdp"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:gravity="center"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="@string/hello_enter_app"
+                    android:textColor="#DEDEDE"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/_25sdp"
+            android:elevation="@dimen/_10sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/developBy"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_9ssp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mohamed Elkouly  For Digital Solutions"
+                    android:fontFamily="@font/sf_pro_text_semibold"
+
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8ssp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+
+</ScrollView>

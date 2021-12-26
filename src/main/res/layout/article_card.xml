@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_item_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
+    android:backgroundTint="@color/gray_lite"
+    android:clickable="true"
+    android:elevation="@dimen/_5ssp"
+    android:focusable="true"
+    android:paddingBottom="@dimen/_10sdp"
+    app:cardCornerRadius="@dimen/_10sdp">
+
+
+        <!--    android:foreground="?selectableItemBackground"-->
+        <!--    app:cardBackgroundColor="@android:color/white"-->
+        <FrameLayout
+            android:id="@+id/card_news_item_framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_6sdp"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_85sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+
+                        android:backgroundTint="@color/carditembordercolor"
+                        app:cardCornerRadius="@dimen/_10sdp">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_margin="1px"
+                            app:cardCornerRadius="@dimen/_10sdp">
+
+                            <ImageView
+                                android:id="@+id/card_news_item_imageview"
+                                android:layout_width="@dimen/_90sdp"
+                                android:layout_height="@dimen/_85sdp"
+                                android:layout_gravity="center"
+
+                                android:scaleType="fitXY"
+
+
+                                />
+                        </androidx.cardview.widget.CardView>
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/card_news_news_items_title_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:fontFamily="@font/sf_pro_text_semibold"
+                            android:gravity="center_vertical"
+                            android:text="Name New Name"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_14sdp"
+
+                            />
+
+
+                        <TextView
+                            android:id="@+id/card_news_item_state_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/sf_pro_text_regular"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/red2"
+                            android:textSize="@dimen/_13ssp" />
+
+
+
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/card_news_item_type_tv"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="@dimen/_2sdp"-->
+<!--                            android:layout_marginEnd="@dimen/_5sdp"-->
+<!--                            android:ellipsize="end"-->
+<!--                            android:fontFamily="@font/sf_pro_text_regular"-->
+<!--                            android:gravity="center_vertical"-->
+<!--                            android:text="@string/METTING_ROOM"-->
+<!--                            android:textColor="@color/gray_707070"-->
+<!--                            android:textSize="@dimen/_13ssp" />-->
+
+
+                       </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/card_news_item_description_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/sf_pro_text_regular"
+                    android:lineSpacingMultiplier="1.3"
+                    android:maxLines="2"
+                    android:text="The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz..."
+                    android:textColor="@color/dark_gray2"
+
+                    android:textSize="@dimen/_14sdp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:ellipsize="end">
+
+
+                    <FrameLayout
+                        android:id="@+id/card_news_item_share_btn"
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+
+                        android:layout_gravity="end|center_vertical">
+
+                        <ImageView
+                            android:id="@+id/card_news_item_share_img_btn"
+                            android:layout_width="@dimen/_28sdp"
+                            android:layout_height="@dimen/_28sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_baseline_share_24"
+                            />
+
+                    </FrameLayout>
+
+                </FrameLayout>
+            </LinearLayout>
+        </FrameLayout>
+</androidx.cardview.widget.CardView>
