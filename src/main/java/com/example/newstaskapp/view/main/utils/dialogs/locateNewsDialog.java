@@ -5,6 +5,7 @@ import static com.example.newstaskapp.view.main.utils.HelperMethod.showCookieMsg
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
@@ -43,7 +44,7 @@ public class locateNewsDialog {
     public void showDialog(final Activity activity, MakeLoadNewsInteface makeLoadNewsInteface) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
+        dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setContentView(R.layout.option_dialog_to_get_news);
         dialog.setCanceledOnTouchOutside(false);
@@ -80,9 +81,13 @@ public class locateNewsDialog {
             }
         });
 
-
-
-
+//        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//
+//            @Override
+//            public void onCancel(DialogInterface dialog) {
+//                activity.finish();
+//            }
+//        });
                 dialog.show();
 
             }

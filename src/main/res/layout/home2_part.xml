@@ -26,8 +26,7 @@
                     android:id="@+id/fragment_home_recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/not_found"
-                    android:scrollbars="vertical" />
+                    />
                 <!--                <include-->
                 <!--                    layout="@layout/item_load_more"-->
                 <!--                    android:layout_width="match_parent"-->

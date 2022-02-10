@@ -90,7 +90,7 @@
                     android:id="@+id/fragment_home_locate_news_type_auto"
                     android:editable="false"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_height="@dimen/_50sdp"
                     style="@style/EditTextLocateNews"
                     >
                 </AutoCompleteTextView>

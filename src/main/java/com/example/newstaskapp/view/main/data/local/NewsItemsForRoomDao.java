@@ -4,6 +4,7 @@ package com.example.newstaskapp.view.main.data.local;
 import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
+import androidx.room.Entity;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -11,6 +12,7 @@ import androidx.room.Update;
 
 import com.example.newstaskapp.view.main.data.models.getNewsListResponce.ArticleForRoom;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,6 +21,8 @@ public interface NewsItemsForRoomDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ArticleForRoom... ArticleItem);
+
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllOrders(List<ArticleForRoom> ArticleItem);

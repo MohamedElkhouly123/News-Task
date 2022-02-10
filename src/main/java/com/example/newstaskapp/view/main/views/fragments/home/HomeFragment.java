@@ -1,6 +1,8 @@
 package com.example.newstaskapp.view.main.views.fragments.home;
 
 import static com.example.newstaskapp.view.main.data.api.ApiClient.getApiClient;
+import static com.example.newstaskapp.view.main.data.local.SharedPreferencesManager.LoadData;
+import static com.example.newstaskapp.view.main.data.local.SharedPreferencesManager.USER_Time;
 import static com.example.newstaskapp.view.main.utils.HelperMethod.showToast;
 import static java.util.Calendar.DAY_OF_MONTH;
 import static java.util.Calendar.MONTH;
@@ -9,13 +11,15 @@ import static java.util.Calendar.getInstance;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
@@ -86,34 +90,36 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         initListenerViewModel();
+        final locateNewsDialog dialog2 = new locateNewsDialog();
+        dialog2.showDialog(getActivity(), this);
     }
 
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         root = binding.getRoot();
+//        USER_Time = LoadData(getActivity(), USER_Time);
         controller = Navigation.findNavController(container);
         initView();
+        initRS();
         return root;
     }
 
     private void articleListConverter() {
-         for(int i=0;i<articles.size();i++){
+        for(int i=0;i<articles.size();i++){
              articleForRoom=new ArticleForRoom(
                      articles.get(i).getAuthor(),articles.get(i).getTitle(),articles.get(i).getDescription(),
                      articles.get(i).getUrl(),articles.get(i).getUrlToImage(),articles.get(i).getPublishedAt(),
                      articles.get(i).getContent(),articles.get(i).getSource().getId(),articles.get(i).getSource().getName()
                      );
-             articleForRoomsList.add(articleForRoom);
-             deleteLocalList();
-             saveLocalList(articleForRoom);
-         }
-        showToast(getActivity(), articleForRoomsList.size()+"  "+articles.size());
+            articleForRoomsList.add(articleForRoom);
+            saveLocalList(articleForRoom);
+        }
+//        showToast(getActivity(), articleForRoomsList.size()+"  "+articles.size());
         allNewsAdapter.notifyDataSetChanged();
         allNewsAdapter.notifyItemRangeChanged(0, allNewsAdapter.getItemCount());
         if (articles.size() > 0) {
@@ -140,14 +146,13 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
                 new Runnable() {
                     @Override
                     public void run() {
-                        dataBase.addNewOrderItemDao().add(articleForRoom);
+                        dataBase.addNewOrderItemDao().insert(articleForRoom);
                     }
 
                 });
     }
 
     private void initListenerViewModel() {
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         homeViewModel.getAllUserMainNewsDataResponce().observe(getActivity(), new Observer<GetNewsListResponce>() {
             @Override
             public void onChanged(GetNewsListResponce getNewsListResponce) {
@@ -156,8 +161,9 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
 //                        if (response.getStatus().equals("success")) {
 
                         if (getNewsListResponce.getArticles() != null) {
-                                articles.clear();
+                            articles.clear();
                             articleForRoomsList.clear();
+                            deleteLocalList();
                             articles.addAll(getNewsListResponce.getArticles() );
                             articleListConverter();
                         }
@@ -172,14 +178,15 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
         });
         homeViewModel.getLocalList().observe(getActivity(), new Observer<List<ArticleForRoom>>() {
             @Override
-            public void onChanged(List<ArticleForRoom> articleForRooms) {
+            public void onChanged(List<ArticleForRoom> articleForRooms2) {
                 try {
+//                    showToast(getActivity(), articleForRooms2.size()+"  "+articles.size());
                     articles.clear();
-                    articleForRooms.clear();
-                    articleForRooms.addAll(articleForRooms);
+                    articleForRoomsList.clear();
+                    articleForRoomsList.addAll(articleForRooms2);
                     allNewsAdapter.notifyDataSetChanged();
                     allNewsAdapter.notifyItemRangeChanged(0, allNewsAdapter.getItemCount());
-                if (articles.size() > 0) {
+                if (articleForRooms2.size() > 0) {
                     noResultErrorTitle.setVisibility(View.GONE);
                 } else {
 //                                noResultErrorTitle.setText(getActivity().getString(R.string.waiting_for_your_flash_cards));
@@ -192,6 +199,7 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
     }
 
     private void initView() {
+        setUpActivity();
         titleTextView = binding.home2Part.toolbar.appGeneralToolbarTitleTv;
         searchBtnView = binding.home2Part.toolbar.appGeneralToolbarSearchImg;
         backBtnView = binding.home2Part.toolbar.appGeneralToolbarBackImg;
@@ -205,28 +213,32 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
 //        backBtnView.setVisibility(View.VISIBLE);
         titleTextView.setText(getText(R.string.last_news));
 
-        final locateNewsDialog dialog2 = new locateNewsDialog();
-        dialog2.showDialog(getActivity(), this);
-//        controller.navigate(R.id.action_coursesFragment_to_loginFragment);
 
+//        controller.navigate(R.id.action_coursesFragment_to_loginFragment);
+        searchBtnView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSearch();
+            }
+        });
     }
 
     private void initRS() {
 //        lLayout = new LinearLayoutManager(getActivity());
         gLayout = new GridLayoutManager(getContext(), 1);
         fragmentHomeRecyclerView.setLayoutManager(gLayout);
+        fragmentHomeRecyclerView.setHasFixedSize(true);
         allNewsAdapter = new AllNewsAdapter(articleForRoomsList, controller, getActivity(), getContext());
         fragmentHomeRecyclerView.setAdapter(allNewsAdapter);
 //            showToast(getActivity(), "success adapter");
         if (articles.size() == 0) {
             getallLastNewsList(1);
-//            showToast(getActivity(), "success adapter");
         }
 
         fragmentHomeSrRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
+//                showToast(getActivity(), "success adapter");
                 getallLastNewsList(1);
 
             }
@@ -247,40 +259,59 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
         if (Filter) {
             searchText = searchEdtxtView.getText().toString();
             if (searchText.length() == 0) {
+                searchText="apple";
                 initResponceCall(searchText);
             } else {
 //                Toast.makeText(getContext(), ""+maxPage, Toast.LENGTH_SHORT).show();
 //                checkSearchText(searchText);
-                searchText="";
                 initResponceCall(searchText);
             }
         } else {
-            searchText="";
+            searchText="apple";
             initResponceCall(searchText);
         }
         Log.d("eeeeeeeeeeeeee", "getallUserList: eeeeeeeee");
         homeViewModel.sendToGetAllUserMainNewsDataResponce(getActivity(), getAllUserResponceCall, this, fragmentHomeSrRefresh, maxPage);
-
-
     }
+
+    private void iniData() {
+
+        searchEdtxtView.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey (View v,int keyCode, KeyEvent event){
+                Log.d("actionId", "OnKeyListener: " + keyCode + " - " + KeyEvent.KEYCODE_ENTER);
+                if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    Filter = true;
+                    getallLastNewsList(1);
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
 
     private void initResponceCall(String searchText) {
         if("everything".equalsIgnoreCase(type)) {
-            getAllUserResponceCall = getApiClient().getNewsList("apple","popularity",fromDate, basicAuthorization);
+            getAllUserResponceCall = getApiClient().getNewsList(searchText,"popularity",fromDate, basicAuthorization);
         }else {
-            getAllUserResponceCall = getApiClient().getTopNewsList("apple", "publishedAt", fromDate, "us", "business", basicAuthorization);
+            getAllUserResponceCall = getApiClient().getTopNewsList(searchText, "publishedAt", fromDate, "us", "business", basicAuthorization);
         }
     }
 
     private void reInit(int page) {
-        List<Article> articles = new ArrayList<>();
-        List<ArticleForRoom> articleForRoomsList = new ArrayList<>();
+        articles = new ArrayList<>();
+        articleForRoomsList = new ArrayList<>();
         allNewsAdapter = new AllNewsAdapter(articleForRoomsList, controller, getActivity(), getContext());
         fragmentHomeRecyclerView.setAdapter(allNewsAdapter);
     }
 
     @Override
     public void onBack() {
+        if(Filter){
+            searchEdtxtView.setVisibility(View.GONE);
+            searchBtnView.setVisibility(View.VISIBLE);
+        }
         getActivity().finish();
     }
 
@@ -308,6 +339,19 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
 
     }
 
+    private void openSearch() {
+        Filter = true;
+        iniData();
+        searchEdtxtView.setVisibility(View.VISIBLE);
+//        initAutoComplete();
+        searchBtnView.setVisibility(View.GONE);
+    }
+
+    private void initAutoComplete() {
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), R.layout.custam_text_view, R.id.text_view_list_item, searchKeys);
+//        searchEdtxtView.setAdapter(adapter);
+    }
+
 
     @Override
     public void onDestroyView() {
@@ -332,7 +376,7 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
     @Override
     public void makeDoneBtnCall(String news_type) {
        type=news_type;
-        initRS();
+       getallLastNewsList(1);
     }
 
     @Override

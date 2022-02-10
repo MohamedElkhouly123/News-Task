@@ -50,7 +50,7 @@ public class AllNewsAdapter extends RecyclerView.Adapter<AllNewsAdapter.NewsView
 
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-        showToast(activity, list.size()+"");
+//        showToast(activity, list.size()+"");
         setdata(holder,position);
         setaction(holder,position);
     }
@@ -80,8 +80,8 @@ public class AllNewsAdapter extends RecyclerView.Adapter<AllNewsAdapter.NewsView
     private void setdata(NewsViewHolder holder, int position) {
         ArticleForRoom news = list.get(position);
         try {
-            holder.cardnewsDescriptionTv.setText(news.getName());
-//            holder.groupCardmember.setText(news.getMemberCount());
+            holder.cardnewsDescriptionTv.setText(news.getDescription());
+            holder.cardnewsNameTv.setText(news.getName());
             holder.cardnewsTitleTv.setText(news.getTitle());
             if (news.getUrlToImage() != null) {
                 String postImage = news.getUrlToImage();
@@ -105,6 +105,7 @@ public class AllNewsAdapter extends RecyclerView.Adapter<AllNewsAdapter.NewsView
         private final View view;
         FrameLayout cardnewsImgShareBotton;
         TextView cardnewsTitleTv;
+        TextView cardnewsNameTv;
         TextView cardnewsDescriptionTv;
         ImageView cardnewsImg;
         FrameLayout cardnewsMainLy;
@@ -115,6 +116,7 @@ public class AllNewsAdapter extends RecyclerView.Adapter<AllNewsAdapter.NewsView
             cardnewsMainLy=view.findViewById(R.id.card_news_item_framelayout);
             cardnewsImg=view.findViewById(R.id.card_news_item_imageview);
             cardnewsTitleTv=view.findViewById(R.id.card_news_news_items_title_tv);
+            cardnewsNameTv=view.findViewById(R.id.card_news_item_name_tv);
             cardnewsDescriptionTv=view.findViewById(R.id.card_news_item_description_tv);
 
         }

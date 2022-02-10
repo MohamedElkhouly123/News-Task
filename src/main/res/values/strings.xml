@@ -30,4 +30,5 @@
     <string name="select_type">Select Type</string>
     <string name="invalid_university">Please select type first</string>
     <string name="description">Description</string>
+    <string name="article_details">Article Details</string>
 </resources>

@@ -38,13 +38,14 @@ public class ShowArticlsDetailsFragment extends BaseFragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         if (this.getArguments() != null) {
-            articleListDatum = (ArticleForRoom) this.getArguments().getSerializable("articleListDatum");
+            articleListDatum = (ArticleForRoom) this.getArguments().getSerializable("Articleobj");
         }
         slideshowViewModel =
                 new ViewModelProvider(this).get(ShowArticlsDetailsViewModel.class);
 
         binding = FragmentShowArticleDetailsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        setUpActivity();
         titleTextView = binding.details.toolbar.appGeneralToolbarTitleTv;
         backBtnView = binding.details.toolbar.appGeneralToolbarBackImg;
         fragmentArticleDescriptionTv = binding.details.fragmentArticleDescriptionTv;
@@ -56,20 +57,23 @@ public class ShowArticlsDetailsFragment extends BaseFragment {
     }
 
     private void setData() {
-        backBtnView.setVisibility(View.VISIBLE);
-        fragmentArticleDescriptionTv.setText(articleListDatum.getDescription());
-        fragmentArticleTitleTv.setText(articleListDatum.getTitle());
-        fragmentArticleNameTv.setText(articleListDatum.getName());
-        if (articleListDatum.getUrlToImage() != null) {
-            String postImage = articleListDatum.getUrlToImage();
-            onLoadImageFromUrl2(fragmentArticleImg, postImage, getContext());
-        }
-        backBtnView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBack();
+        try {
+            backBtnView.setVisibility(View.VISIBLE);
+            titleTextView.setText(getString(R.string.article_details));
+            fragmentArticleDescriptionTv.setText(articleListDatum.getDescription());
+            fragmentArticleTitleTv.setText(articleListDatum.getTitle());
+            fragmentArticleNameTv.setText(articleListDatum.getName());
+            if (articleListDatum.getUrlToImage() != null) {
+                String postImage = articleListDatum.getUrlToImage();
+                onLoadImageFromUrl2(fragmentArticleImg, postImage, getContext());
             }
-        });
+            backBtnView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBack();
+                }
+            });
+        }catch (Exception e){}
     }
 
     @Override

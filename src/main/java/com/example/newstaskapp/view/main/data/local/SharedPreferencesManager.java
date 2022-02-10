@@ -15,7 +15,8 @@ public class SharedPreferencesManager {
     public static String LANG = "LANGUAGE";
     public static String USER_PASSWORD = "USER_PASSWORD";
     public static String USER_TOKEN = "USER_TOKEN";
-    public static String USER_Cookie = "USER_Cookie";
+    public static String USER_Time = "USER_Time";
+    public static String USER_Type = "USER_Time";
     public static String CLIENT = "CLIENT";
     public static String TABPOSION = "TABPOSION";
     public static String USER_FireBase_TOKEN = "USER_FireBase_TOKEN";
