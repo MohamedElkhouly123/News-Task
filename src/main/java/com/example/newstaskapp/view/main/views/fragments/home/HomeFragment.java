@@ -1,9 +1,6 @@
 package com.example.newstaskapp.view.main.views.fragments.home;
 
 import static com.example.newstaskapp.view.main.data.api.ApiClient.getApiClient;
-import static com.example.newstaskapp.view.main.data.local.SharedPreferencesManager.LoadData;
-import static com.example.newstaskapp.view.main.data.local.SharedPreferencesManager.USER_Time;
-import static com.example.newstaskapp.view.main.utils.HelperMethod.showToast;
 import static java.util.Calendar.DAY_OF_MONTH;
 import static java.util.Calendar.MONTH;
 import static java.util.Calendar.YEAR;
@@ -15,8 +12,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,12 +28,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.newstaskapp.R;
 import com.example.newstaskapp.databinding.FragmentHomeBinding;
-import com.example.newstaskapp.view.main.adapters.AllNewsAdapter;
+import com.example.newstaskapp.view.main.adapters.AllNewsAdapterJava;
 import com.example.newstaskapp.view.main.data.local.DataBase;
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.Article;
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.ArticleForRoom;
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.GetNewsListResponce;
-import com.example.newstaskapp.view.main.utils.dialogs.locateNewsDialog;
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.Article;
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoom;
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.GetNewsListResponce;
+import com.example.newstaskapp.view.main.utils.dialogs.LocateNewsDialog;
 import com.example.newstaskapp.view.main.utils.interfaces.MakeLoadNewsInteface;
 import com.example.newstaskapp.view.main.utils.interfaces.TryAgainOncall;
 import com.example.newstaskapp.view.main.views.fragments.BaseFragment;
@@ -80,7 +75,7 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
     private int maxPage=1;
     private boolean Filter=false;
     private String searchText;
-    private AllNewsAdapter allNewsAdapter;
+    private AllNewsAdapterJava allNewsAdapter;
     private String type;
     private Call<GetNewsListResponce> getAllUserResponceCall;
     private String basicAuthorization;
@@ -92,7 +87,7 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
         super.onCreate(savedInstanceState);
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         initListenerViewModel();
-        final locateNewsDialog dialog2 = new locateNewsDialog();
+        final LocateNewsDialog dialog2 = new LocateNewsDialog();
         dialog2.showDialog(getActivity(), this);
     }
 
@@ -104,6 +99,8 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
         root = binding.getRoot();
 //        USER_Time = LoadData(getActivity(), USER_Time);
         controller = Navigation.findNavController(container);
+//        HelperWithKotlin.INSTANCE.showToastss(getActivity(),
+//                "efe");
         initView();
         initRS();
         return root;
@@ -228,7 +225,7 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
         gLayout = new GridLayoutManager(getContext(), 1);
         fragmentHomeRecyclerView.setLayoutManager(gLayout);
         fragmentHomeRecyclerView.setHasFixedSize(true);
-        allNewsAdapter = new AllNewsAdapter(articleForRoomsList, controller, getActivity(), getContext());
+        allNewsAdapter = new AllNewsAdapterJava(articleForRoomsList, controller, getActivity(), getContext());
         fragmentHomeRecyclerView.setAdapter(allNewsAdapter);
 //            showToast(getActivity(), "success adapter");
         if (articles.size() == 0) {
@@ -302,7 +299,7 @@ public class HomeFragment extends BaseFragment implements MakeLoadNewsInteface, 
     private void reInit(int page) {
         articles = new ArrayList<>();
         articleForRoomsList = new ArrayList<>();
-        allNewsAdapter = new AllNewsAdapter(articleForRoomsList, controller, getActivity(), getContext());
+        allNewsAdapter = new AllNewsAdapterJava(articleForRoomsList, controller, getActivity(), getContext());
         fragmentHomeRecyclerView.setAdapter(allNewsAdapter);
     }
 

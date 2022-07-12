@@ -1,7 +1,5 @@
 
-package com.example.newstaskapp.view.main.data.models.getNewsListResponce;
-
-import androidx.room.Entity;
+package com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo;
 
 import java.io.Serializable;
 import java.util.ArrayList;

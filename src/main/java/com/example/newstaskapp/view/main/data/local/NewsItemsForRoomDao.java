@@ -1,18 +1,15 @@
 package com.example.newstaskapp.view.main.data.local;
 
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
-import androidx.room.Entity;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.ArticleForRoom;
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoom;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

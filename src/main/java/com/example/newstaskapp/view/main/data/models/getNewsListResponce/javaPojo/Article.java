@@ -1,9 +1,5 @@
 
-package com.example.newstaskapp.view.main.data.models.getNewsListResponce;
-
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+package com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

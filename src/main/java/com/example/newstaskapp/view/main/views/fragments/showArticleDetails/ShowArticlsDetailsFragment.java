@@ -10,17 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.newstaskapp.R;
 import com.example.newstaskapp.databinding.FragmentShowArticleDetailsBinding;
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.ArticleForRoom;
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoom;
 import com.example.newstaskapp.view.main.views.fragments.BaseFragment;
-
-import java.text.BreakIterator;
 
 public class ShowArticlsDetailsFragment extends BaseFragment {
 

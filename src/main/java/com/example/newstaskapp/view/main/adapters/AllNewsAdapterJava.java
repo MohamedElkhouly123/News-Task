@@ -2,7 +2,6 @@ package com.example.newstaskapp.view.main.adapters;
 
 
 import static com.example.newstaskapp.view.main.utils.HelperMethod.onLoadImageFromUrl2;
-import static com.example.newstaskapp.view.main.utils.HelperMethod.showToast;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,20 +19,20 @@ import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newstaskapp.R;
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.ArticleForRoom;
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoom;
 import com.example.newstaskapp.view.main.views.activities.BaseActivity;
 
 import java.util.List;
 
 
-public class AllNewsAdapter extends RecyclerView.Adapter<AllNewsAdapter.NewsViewHolder> {
+public class AllNewsAdapterJava extends RecyclerView.Adapter<AllNewsAdapterJava.NewsViewHolder> {
     List<ArticleForRoom> list;
     private final BaseActivity activity;
     private final Context context;
 
     NavController navController;
 //    JoinGroupInterFace joinGroupInterFace;
-    public AllNewsAdapter(List<ArticleForRoom> list, NavController navController, Activity activity, Context context) {
+    public AllNewsAdapterJava(List<ArticleForRoom> list, NavController navController, Activity activity, Context context) {
         this.list = list;
 //        this.joinGroupInterFace=joinGroupInterFace;
         this.navController=navController;

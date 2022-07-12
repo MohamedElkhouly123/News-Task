@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class locateNewsDialog {
+public class LocateNewsDialog {
     private static int adultNum;
 //    private MakeLoadNewsInteface makeLoadNewsInteface;
     private TextView checkOutTv,checkInTv,fromDateTv,toDateTv,hotelNameTv,typeTv;

@@ -1,5 +1,5 @@
 
-package com.example.newstaskapp.view.main.data.models.getNewsListResponce;
+package com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo;
 
 import androidx.room.Entity;
 

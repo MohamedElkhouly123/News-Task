@@ -7,8 +7,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.Article;
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.ArticleForRoom;
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoom;
 
 
 @Database(entities = {ArticleForRoom.class,}, version = 2, exportSchema = false)

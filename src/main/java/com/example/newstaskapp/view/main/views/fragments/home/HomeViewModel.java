@@ -4,14 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import static com.example.newstaskapp.view.main.utils.netWork.InternetState.isConnected;
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LiveData;
@@ -19,11 +12,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.newstaskapp.R;
 import com.example.newstaskapp.view.main.data.local.DataBase;
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.ArticleForRoom;
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.GetNewsListResponce;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoom;
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.GetNewsListResponce;
 
 import java.util.List;
 import java.util.concurrent.Executors;

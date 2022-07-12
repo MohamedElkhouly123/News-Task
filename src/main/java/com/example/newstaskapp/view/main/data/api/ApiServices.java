@@ -1,11 +1,10 @@
 package com.example.newstaskapp.view.main.data.api;
 
 
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.GetNewsListResponce;
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.GetNewsListResponce;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface ApiServices {
