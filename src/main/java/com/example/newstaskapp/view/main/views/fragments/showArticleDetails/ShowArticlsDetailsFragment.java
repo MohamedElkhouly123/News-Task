@@ -16,8 +16,9 @@ import com.example.newstaskapp.R;
 import com.example.newstaskapp.databinding.FragmentShowArticleDetailsBinding;
 import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoom;
 import com.example.newstaskapp.view.main.views.fragments.BaseFragment;
+import com.example.newstaskapp.view.main.views.fragments.BaseFragmentKotlin;
 
-public class ShowArticlsDetailsFragment extends BaseFragment {
+public class ShowArticlsDetailsFragment extends BaseFragmentKotlin {
 
     private ShowArticlsDetailsViewModel slideshowViewModel;
     private FragmentShowArticleDetailsBinding binding;

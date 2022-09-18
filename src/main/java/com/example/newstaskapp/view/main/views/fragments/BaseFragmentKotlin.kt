@@ -10,9 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.newstaskapp.R
-import com.example.newstaskapp.view.main.utils.HelperMethod
-import com.example.newstaskapp.view.main.utils.netWork.InternetState
-import com.example.newstaskapp.view.main.views.activities.BaseActivity
+import com.example.newstaskapp.view.main.utils.HelperWithKotlin
+import com.example.newstaskapp.view.main.utils.netWork.InternetStateKotlin.isConnected2
 import com.example.newstaskapp.view.main.views.activities.BaseActivityKotlin
 import com.example.newstaskapp.view.main.views.activities.HomeCycleActivity
 import com.example.newstaskapp.view.main.views.activities.SplashCycleActivity
@@ -51,7 +50,7 @@ open class BaseFragmentKotlin : Fragment() {
 
     fun refreshLanguage() {
         // your language
-        val locale = Locale(BaseActivity.languageToLoad)
+        val locale = Locale(BaseActivityKotlin.languageToLoad)
         Locale.setDefault(locale)
         val config = Configuration()
         config.locale = locale
@@ -64,8 +63,8 @@ open class BaseFragmentKotlin : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         activity = context
-        if (!InternetState.isConnected(getActivity())) {
-            HelperMethod.showCookieMsg(
+        if (!isConnected2(requireActivity())) {
+            HelperWithKotlin.showCookieMsg(
                 "Warning", getString(R.string.error_inter_net), getActivity(), R.color.red,
                 CookieBar.TOP
             )
@@ -91,7 +90,7 @@ open class BaseFragmentKotlin : Fragment() {
     override fun onResume() {
         super.onResume()
         //        ||"".equalsIgnoreCase(languageToLoad)||languageToLoad==null
-        if ("".equals(BaseActivity.BASE_URL2, ignoreCase = true)) {
+        if ("".equals(BaseActivityKotlin.BASE_URL2, ignoreCase = true)) {
             startActivity(Intent(getActivity(), SplashCycleActivity::class.java))
         }
     }

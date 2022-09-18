@@ -15,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newstaskapp.R
 import com.example.newstaskapp.view.main.adapters.AllNewsAdapter.NewsViewHolder
 import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoom
-import com.example.newstaskapp.view.main.utils.HelperMethod
-import com.example.newstaskapp.view.main.views.activities.BaseActivity
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoomK
+import com.example.newstaskapp.view.main.utils.HelperWithKotlin
+import com.example.newstaskapp.view.main.views.activities.BaseActivityKotlin
 
 class AllNewsAdapter(
     var list: List<ArticleForRoom>,
@@ -25,7 +26,7 @@ class AllNewsAdapter(
     context: Context
 ) :
     RecyclerView.Adapter<NewsViewHolder>() {
-    private val activity: BaseActivity
+    private val activity: BaseActivityKotlin
     private val context: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val v =
@@ -65,7 +66,7 @@ class AllNewsAdapter(
             holder.cardnewsTitleTv.text = news.title
             if (news.urlToImage != null) {
                 val postImage = news.urlToImage
-                HelperMethod.onLoadImageFromUrl2(holder.cardnewsImg, postImage, context)
+                HelperWithKotlin.onLoadImageFromUrl2(holder.cardnewsImg, postImage, context)
             }
         } catch (e: Exception) {
         }
@@ -100,7 +101,7 @@ class AllNewsAdapter(
     //    JoinGroupInterFace joinGroupInterFace;
     init {
         //        this.joinGroupInterFace=joinGroupInterFace;
-        this.activity = activity as BaseActivity
+        this.activity = activity as BaseActivityKotlin
         this.context = context
     }
 }

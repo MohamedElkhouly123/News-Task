@@ -18,17 +18,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.newstaskapp.R
 import com.example.newstaskapp.databinding.FragmentHomeBinding
-import com.example.newstaskapp.view.main.adapters.AllNewsAdapterJava
+import com.example.newstaskapp.view.main.adapters.AllNewsAdapter
 import com.example.newstaskapp.view.main.data.api.ApiClient
+import com.example.newstaskapp.view.main.data.api.ApiClientKotlin
 import com.example.newstaskapp.view.main.data.local.DataBase
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.Article
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoom
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.GetNewsListResponce
-import com.example.newstaskapp.view.main.utils.HelperWithKotlin.showToast
-import com.example.newstaskapp.view.main.utils.dialogs.LocateNewsDialog
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.*
+import com.example.newstaskapp.view.main.utils.dialogs.LocateNewsDialogK
 import com.example.newstaskapp.view.main.utils.interfaces.MakeLoadNewsInteface
 import com.example.newstaskapp.view.main.utils.interfaces.TryAgainOncall
-import com.example.newstaskapp.view.main.views.fragments.BaseFragment
 import com.example.newstaskapp.view.main.views.fragments.BaseFragmentKotlin
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputLayout
@@ -63,9 +60,9 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
     private var maxPage = 1
     private var Filter = false
     private var searchText: String? = null
-    private var allNewsAdapter: AllNewsAdapterJava? = null
+    private var allNewsAdapter: AllNewsAdapter? = null
     private var type: String? = null
-    private var getAllUserResponceCall: Call<GetNewsListResponce?>? = null
+    private var getAllUserResponceCall: Call<GetNewsListResponce>? = null
     private var basicAuthorization: String? = null
     private var dataBase: DataBase? = null
     private var gLayout: GridLayoutManager? = null
@@ -74,8 +71,8 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
         homeViewModel = ViewModelProvider(this).get(HomeViewModelK::class.java)
         initListenerViewModel()
 //        showToast(requireActivity(),"jjh")
-        val dialog2 = LocateNewsDialog()
-        dialog2.showDialog(activity, this)
+        val dialog2 = LocateNewsDialogK()
+        dialog2.showDialog(requireActivity(), this)
     }
 
     override fun onCreateView(
@@ -98,7 +95,7 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
             articleForRoom = ArticleForRoom(
                 articles[i].author, articles[i].title, articles[i].description,
                 articles[i].url, articles[i].urlToImage, articles[i].publishedAt,
-                articles[i].content, articles[i].source.id, articles[i].source.name
+                articles[i].content, articles[i].source?.id, articles[i].source?.name
             )
             articleForRoomsList.add(articleForRoom!!)
             saveLocalList(articleForRoom!!)
@@ -116,13 +113,13 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
 
     private fun deleteLocalList() {
         Executors.newSingleThreadExecutor().execute {
-            dataBase!!.addNewOrderItemDao().deletAll()
+            dataBase!!.addNewOrderItemDao()?.deletAll()
         }
     }
 
     private fun saveLocalList(articleForRoom: ArticleForRoom) {
         Executors.newSingleThreadExecutor().execute {
-            dataBase!!.addNewOrderItemDao().insert(articleForRoom)
+            dataBase!!.addNewOrderItemDao()?.insert(articleForRoom!!)
         }
     }
 
@@ -176,7 +173,7 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
         noResultErrorTitle = binding!!.home2Part.notFound.noResultErrorTitle
         fragmentHomeRecyclerView = binding!!.home2Part.fragmentHomeRecyclerView
         fragmentHomeSrRefresh = binding!!.home2Part.fragmentHomeSrRefresh
-        dataBase = DataBase.getInstance(context)
+        dataBase = DataBase.getInstance(requireContext())
         searchBtnView!!.visibility = View.VISIBLE
         //        backBtnView.setVisibility(View.VISIBLE);
         titleTextView!!.text = getText(R.string.last_news)
@@ -191,7 +188,7 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
         gLayout = GridLayoutManager(context, 1)
         fragmentHomeRecyclerView!!.layoutManager = gLayout
         fragmentHomeRecyclerView!!.setHasFixedSize(true)
-        allNewsAdapter = AllNewsAdapterJava(articleForRoomsList, controller, activity, context)
+        allNewsAdapter = AllNewsAdapter(articleForRoomsList, controller!!, requireActivity(), requireContext())
         fragmentHomeRecyclerView!!.adapter = allNewsAdapter
 //                    showToast(getActivity(), "success adapter");
         if (articles.size == 0) {
@@ -248,11 +245,10 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
     }
 
     private fun initResponceCall(searchText: String) {
-        getAllUserResponceCall = if ("everything".equals(type, ignoreCase = true)) {
-            ApiClient.getApiClient()
-                .getNewsList(searchText, "popularity", fromDate, basicAuthorization)
+        if ("everything".equals(type, ignoreCase = true)) {
+            getAllUserResponceCall= ApiClient.getApiClient()?.getNewsList(searchText, "popularity", fromDate, basicAuthorization)
         } else {
-            ApiClient.getApiClient().getTopNewsList(
+            getAllUserResponceCall= ApiClient.getApiClient()?.getTopNewsList(
                 searchText,
                 "publishedAt",
                 fromDate,
@@ -266,7 +262,7 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
     private fun reInit(page: Int) {
         articles = ArrayList()
         articleForRoomsList = ArrayList()
-        allNewsAdapter = AllNewsAdapterJava(articleForRoomsList, controller, activity, context)
+        allNewsAdapter = AllNewsAdapter(articleForRoomsList, controller!!, requireActivity(), requireContext())
         fragmentHomeRecyclerView!!.adapter = allNewsAdapter
     }
 

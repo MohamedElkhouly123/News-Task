@@ -1,7 +1,6 @@
 package com.example.newstaskapp.view.main.views.activities
 
 import androidx.appcompat.app.AppCompatActivity
-import com.example.newstaskapp.view.main.views.fragments.BaseFragment
 import com.example.newstaskapp.view.main.views.fragments.BaseFragmentKotlin
 
 open class BaseActivityKotlin : AppCompatActivity() {

@@ -21,7 +21,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class HomeCycleActivity extends BaseActivity {
+public class HomeCycleActivity extends BaseActivityKotlin {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHomeCycleBinding binding;

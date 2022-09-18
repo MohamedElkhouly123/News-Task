@@ -15,5 +15,5 @@ class GetNewsListResponceK : Serializable {
 
     @SerializedName("articles")
     @Expose
-    var articles: List<Article> = ArrayList()
+    var articles: List<ArticleK> = ArrayList()
 }

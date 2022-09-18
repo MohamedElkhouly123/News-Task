@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/homeFragmentKotlin">
 
     <fragment
         android:id="@+id/nav_home"
@@ -22,4 +22,9 @@
         android:name="com.example.newstaskapp.view.main.views.fragments.showArticleDetails.ShowArticlsDetailsFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_show_article_details" />
+    <fragment
+        android:id="@+id/homeFragmentKotlin"
+        android:name="com.example.newstaskapp.view.main.views.fragments.home.HomeFragmentKotlin"
+        android:label="HomeFragmentKotlin"
+        tools:layout="@layout/fragment_home"/>
 </navigation>

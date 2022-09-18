@@ -9,6 +9,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoom;
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoomK;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public interface NewsItemsForRoomDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ArticleForRoom... ArticleItem);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(ArticleForRoomK... ArticleItem);
 
 
 

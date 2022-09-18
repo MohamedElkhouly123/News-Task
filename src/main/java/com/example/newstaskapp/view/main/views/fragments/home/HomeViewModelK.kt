@@ -26,7 +26,7 @@ class HomeViewModelK : ViewModel() {
 
     fun sendToGetAllUserMainNewsDataResponce(
         activity: FragmentActivity?,
-        getAllUserResponceCall: Call<GetNewsListResponce?>,
+        getAllUserResponceCall: Call<GetNewsListResponce>,
         homeFragment: HomeFragmentKotlin?,
         fragmentHomeSrRefresh: SwipeRefreshLayout,
         maxPage: Int

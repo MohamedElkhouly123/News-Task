@@ -1,6 +1,6 @@
 package com.example.newstaskapp.view.main.data.api
 
-import com.example.newstaskapp.view.main.views.activities.BaseActivity
+import com.example.newstaskapp.view.main.views.activities.BaseActivityKotlin
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 object ApiClientKotlin {
     var retrofit: Retrofit? = null
-    val BASE_URL = BaseActivity.BASE_URL2
+    val BASE_URL = BaseActivityKotlin.BASE_URL2
     var gson = GsonBuilder()
         .setLenient()
         .create()

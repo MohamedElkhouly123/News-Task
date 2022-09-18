@@ -7,7 +7,7 @@ import java.io.Serializable
 class ArticleK : Serializable {
     @SerializedName("source")
     @Expose
-    var source: Source? = null
+    var source: SourceK? = null
 
     @SerializedName("author")
     @Expose

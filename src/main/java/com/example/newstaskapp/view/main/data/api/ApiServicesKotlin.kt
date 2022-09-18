@@ -1,6 +1,6 @@
 package com.example.newstaskapp.view.main.data.api
 
-import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.GetNewsListResponce
+import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.GetNewsListResponceK
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,7 +12,7 @@ interface ApiServicesKotlin {
         @Query("sortBy") sortBy: String?,
         @Query("from") from: String?,  //            @Query("sources") String sources ,
         @Query("apiKey") apiKey: String?
-    ): Call<GetNewsListResponce?>?
+    ): Call<GetNewsListResponceK?>?
 
     @GET("top-headlines")
     fun getTopNewsList(
@@ -22,5 +22,5 @@ interface ApiServicesKotlin {
         @Query("country") country: String?,
         @Query("category") category: String?,
         @Query("apiKey") apiKey: String?
-    ): Call<GetNewsListResponce?>?
+    ): Call<GetNewsListResponceK?>?
 }

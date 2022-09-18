@@ -26,7 +26,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.newstaskapp.R
-import com.example.newstaskapp.view.main.data.local.SharedPreferencesManager
+import com.example.newstaskapp.view.main.data.local.SharedPreferencesManagerKotlin
 import com.example.newstaskapp.view.main.utils.interfaces.TryAgainOncall
 import com.example.newstaskapp.view.main.views.activities.HomeCycleActivity
 import org.aviran.cookiebar2.CookieBar
@@ -190,7 +190,7 @@ object HelperWithKotlin {
                 val config = Configuration()
                 config.locale = locale
                 activity.resources.updateConfiguration(config, activity.resources.displayMetrics)
-                SharedPreferencesManager.SaveLanguage(activity, "LANGUAGE", languageCode)
+                SharedPreferencesManagerKotlin.SaveLanguage(activity, "LANGUAGE", languageCode)
 
 //                if (number == 1) {
 //                    Intent intent = new Intent(activity, UserCycleActivity.class);

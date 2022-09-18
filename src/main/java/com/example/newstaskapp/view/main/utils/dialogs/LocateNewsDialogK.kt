@@ -8,7 +8,7 @@ import android.view.View
 import android.view.Window
 import android.widget.*
 import com.example.newstaskapp.R
-import com.example.newstaskapp.view.main.utils.HelperMethod
+import com.example.newstaskapp.view.main.utils.HelperWithKotlin
 import com.example.newstaskapp.view.main.utils.interfaces.MakeLoadNewsInteface
 import com.google.android.material.textfield.TextInputLayout
 import org.aviran.cookiebar2.CookieBar
@@ -59,7 +59,7 @@ class LocateNewsDialogK {
                 makeLoadNewsInteface.makeDoneBtnCall(news_type)
                 dialog.cancel()
             } else {
-                HelperMethod.showCookieMsg(
+                HelperWithKotlin.showCookieMsg(
                     activity.getString(R.string.warning),
                     activity.getString(R.string.invalid_university),
                     activity,

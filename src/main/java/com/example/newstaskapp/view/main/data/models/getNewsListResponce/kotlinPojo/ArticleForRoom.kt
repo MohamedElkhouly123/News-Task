@@ -7,7 +7,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Entity(tableName = "clientNews")
+@Entity(tableName = "clientNews2")
 class ArticleForRoomK : Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "itemId")
