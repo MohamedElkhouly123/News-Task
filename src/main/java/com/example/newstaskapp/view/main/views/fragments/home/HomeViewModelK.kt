@@ -6,11 +6,14 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.newstaskapp.view.main.data.local.DataBase
 import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.ArticleForRoom
 import com.example.newstaskapp.view.main.data.models.getNewsListResponce.javaPojo.GetNewsListResponce
 import com.example.newstaskapp.view.main.utils.netWork.InternetState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,8 +22,9 @@ import java.util.concurrent.Executors
 class HomeViewModelK : ViewModel() {
     private val mText: MutableLiveData<String>
     val allUserMainNewsDataResponce: MutableLiveData<GetNewsListResponce?>
-    private val getNewsListRoomResponceMutableLiveData: MutableLiveData<List<ArticleForRoom>>
+    val getNewsListRoomResponceMutableLiveData: MutableLiveData<List<ArticleForRoom>>
     private var dataBase: DataBase? = null
+    val allUserMainNewsDataState=MutableStateFlow<GetNewsListResponce?>(null)
     val localList: LiveData<List<ArticleForRoom>>
         get() = getNewsListRoomResponceMutableLiveData
 
@@ -81,6 +85,52 @@ class HomeViewModelK : ViewModel() {
             } catch (e: Exception) {
             }
         }
+    }
+
+    fun sendToGetAllUserMainNewsDataResponce2WithStateFolowCoroutine(
+        mainModel
+      :MainModelForSend
+    ) {
+            dataBase = DataBase.getInstance(mainModel.activity)
+            if (InternetState.isConnected(mainModel.activity)) {
+                mainModel.fragmentHomeSrRefresh?.isRefreshing = true
+                mainModel.getAllUserResponceCall?.enqueue(object : Callback<GetNewsListResponce?> {
+                    override fun onResponse(
+                        call: Call<GetNewsListResponce?>,
+                        response: Response<GetNewsListResponce?>
+                    ) {
+                        if (response.body() != null) {
+                            try {
+                                if ("ok".equals(response.body()!!.status, ignoreCase = true)) {
+                                    mainModel.fragmentHomeSrRefresh?.isRefreshing = false
+                                    viewModelScope.launch {
+                                        allUserMainNewsDataState.emit(response.body())
+                                    }
+                                }
+                            } catch (e: Exception) {
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<GetNewsListResponce?>, t: Throwable) {
+                        try {
+                            mainModel.fragmentHomeSrRefresh?.isRefreshing = false
+                            Log.i(ContentValues.TAG, t.message.toString())
+                            Log.i(ContentValues.TAG, t.cause.toString())
+                            viewModelScope.launch {
+                                allUserMainNewsDataState.emit(null)
+                            }
+                        } catch (e: Exception) {
+                        }
+                    }
+                })
+            } else {
+                try {
+                    articlesFromRoom
+                    mainModel.fragmentHomeSrRefresh?.isRefreshing = false
+                } catch (e: Exception) {
+                }
+            }
     }
 
     private val articlesFromRoom: Unit

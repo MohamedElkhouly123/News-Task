@@ -10,6 +10,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,6 +31,8 @@ import com.example.newstaskapp.view.main.views.fragments.BaseFragmentKotlin
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputLayout
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import retrofit2.Call
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -90,6 +93,40 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
         return root
     }
 
+    private fun coroutineExamble() {
+        lifecycleScope.launchWhenStarted {
+            homeViewModel!!.allUserMainNewsDataState.collect {responce ->
+                try {
+                    if (responce != null) {
+                            articles.clear()
+                            articleForRoomsList.clear()
+                            deleteLocalList()
+                            articles.addAll(responce.articles)
+                            articleListConverter()
+                    } else {
+                        //                        showToast(getActivity(), "max=");
+                    }
+                } catch (e: Exception) {
+                }
+            }
+        }
+//        lifecycleScope.launchWhenStarted {  بنعمل اتنين سكوب لو فى حاجه متاخره
+//
+//            homeViewModel!!.listOfSavedIngredients.collectLatest {  responce ->
+//                try {
+//                    if (responce != null) {
+//                        articles.addAll(responce.articles)
+//                        articleListConverter()
+//                    } else {
+//                        //                        showToast(getActivity(), "max=");
+//                    }
+//                } catch (e: Exception) {
+//                }
+//
+//            }
+//        }
+    }
+
     private fun articleListConverter() {
         for (i in articles.indices) {
             articleForRoom = ArticleForRoom(
@@ -143,6 +180,7 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
                 } catch (e: Exception) {
                 }
             })
+
         homeViewModel!!.localList.observe(
             requireActivity(),
             { articleForRooms2 ->
@@ -205,7 +243,6 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
         if (page == 1) {
             maxPage = 1
         }
-
 //        startShimmer(page);
         reInit(page)
         if (Filter) {
@@ -229,6 +266,36 @@ class HomeFragmentKotlin : BaseFragmentKotlin(), MakeLoadNewsInteface, DatePicke
             this,
             fragmentHomeSrRefresh!!,
             maxPage
+        )
+    }
+
+    private fun getallLastNewsListWithCoroutine(page: Int) {
+        basicAuthorization = "d7022c7c9f8f416ebb0cb356cce5abda"
+        if (page == 1) {
+            maxPage = 1
+        }
+        reInit(page)
+        if (Filter) {
+            searchText = searchEdtxtView!!.text.toString()
+            if (searchText!!.length == 0) {
+                searchText = "apple"
+                initResponceCall(searchText!!)
+            } else {
+                initResponceCall(searchText!!)
+            }
+        } else {
+            searchText = "apple"
+            initResponceCall(searchText!!)
+        }
+        Log.d("eeeeeeeeeeeeee", "getallUserList: eeeeeeeee")
+        val mainModelForSend =MainModelForSend()
+        mainModelForSend.activity=activity
+        mainModelForSend.fragmentHomeSrRefresh=fragmentHomeSrRefresh!!
+        mainModelForSend.getAllUserResponceCall=getAllUserResponceCall!!
+        mainModelForSend.homeFragment=this
+        mainModelForSend.maxPage=maxPage
+        homeViewModel!!.sendToGetAllUserMainNewsDataResponce2WithStateFolowCoroutine(
+            mainModelForSend
         )
     }
 

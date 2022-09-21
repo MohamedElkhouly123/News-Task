@@ -13,20 +13,20 @@ import com.example.newstaskapp.R
 import com.example.newstaskapp.view.main.utils.HelperWithKotlin
 import com.example.newstaskapp.view.main.utils.netWork.InternetStateKotlin.isConnected2
 import com.example.newstaskapp.view.main.views.activities.BaseActivityKotlin
-import com.example.newstaskapp.view.main.views.activities.HomeCycleActivity
+import com.example.newstaskapp.view.main.views.activities.HomeCycleActivityKotlin
 import com.example.newstaskapp.view.main.views.activities.SplashCycleActivity
 import org.aviran.cookiebar2.CookieBar
 import java.util.*
 
 open class BaseFragmentKotlin : Fragment() {
     var baseActivity: BaseActivityKotlin? = null
-    var homeCycleActivity: HomeCycleActivity? = null
+    var homeCycleActivity: HomeCycleActivityKotlin? = null
     private var activity: Context? = null
     fun setUpActivity() {
         baseActivity = getActivity() as BaseActivityKotlin?
         baseActivity!!.baseFragment = this
         try {
-            homeCycleActivity = getActivity() as HomeCycleActivity?
+            homeCycleActivity = getActivity() as HomeCycleActivityKotlin?
         } catch (e: Exception) {
         }
     }

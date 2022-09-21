@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.newstaskapp.R;
 import com.example.newstaskapp.view.main.views.activities.HomeCycleActivity;
+import com.example.newstaskapp.view.main.views.activities.HomeCycleActivityKotlin;
 import com.example.newstaskapp.view.main.views.activities.SplashCycleActivity;
 import com.example.newstaskapp.view.main.views.fragments.BaseFragment;
 
@@ -66,7 +67,7 @@ public class SecondSplashFragment extends BaseFragment {
     }
 
     private void startHomeActivity() {
-        startActivity(new Intent(getActivity(), HomeCycleActivity.class));
+        startActivity(new Intent(getActivity(), HomeCycleActivityKotlin.class));
         getActivity().finish();
     }
 

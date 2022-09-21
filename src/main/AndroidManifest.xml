@@ -42,6 +42,14 @@
 
         </activity>
         <activity
+            android:name=".view.main.views.activities.HomeCycleActivityKotlin"
+            android:exported="true"
+            android:label="@string/title_activity_home_cycle"
+            android:theme="@style/Theme.NewsTaskApp.NoActionBar"
+            >
+
+        </activity>
+        <activity
             android:name=".view.main.views.activities.SplashCycleActivity"
             android:exported="true"
             android:theme="@style/Theme.NewsTaskApp"

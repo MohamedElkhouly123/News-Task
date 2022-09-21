@@ -19,8 +19,8 @@ public interface NewsItemsForRoomDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ArticleForRoom... ArticleItem);
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(ArticleForRoomK... ArticleItem);
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    void insert(ArticleForRoom... ArticleItem);
 
 
 

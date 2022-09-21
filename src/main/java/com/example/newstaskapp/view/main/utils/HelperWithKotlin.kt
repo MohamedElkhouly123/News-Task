@@ -28,7 +28,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.newstaskapp.R
 import com.example.newstaskapp.view.main.data.local.SharedPreferencesManagerKotlin
 import com.example.newstaskapp.view.main.utils.interfaces.TryAgainOncall
-import com.example.newstaskapp.view.main.views.activities.HomeCycleActivity
+import com.example.newstaskapp.view.main.views.activities.HomeCycleActivityKotlin
 import org.aviran.cookiebar2.CookieBar
 import java.util.*
 
@@ -198,7 +198,7 @@ object HelperWithKotlin {
 //                    activity.startActivity(intent);
 //                }
 //                if (number == 2) {
-                val intent2 = Intent(activity, HomeCycleActivity::class.java)
+                val intent2 = Intent(activity, HomeCycleActivityKotlin::class.java)
                 if (type !== "") {
                     intent2.putExtra("type", type)
                 }
