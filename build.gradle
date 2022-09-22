@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.seamLabs.newstaskapp"
-        minSdk 17
-        targetSdk 32
+        minSdk 19
+        targetSdk 33
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -62,6 +62,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.5'
     // glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.google.android.gms:play-services-ads:21.2.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

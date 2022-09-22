@@ -1,59 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.newstaskapp">
-<!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-<!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <!-- Include required permissions for Google Mobile Ads to run. -->
     <uses-permission android:name="android.permission.INTERNET" />
-<!--    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" /> -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!--    <uses-permission android:name="android.permission.READ_SMS" />-->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <!--    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>-->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- <uses-permission android:name="android.permission.READ_SMS" /> -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/> -->
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <permission
         android:name="com.seamLabs.newstaskapp.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="com.seamLabs.newstaskapp.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
-        android:usesCleartextTraffic="true"
-        android:protectionLevel="signature"
-        android:requestLegacyExternalStorage="true"
-        android:hardwareAccelerated="true"
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
+        android:protectionLevel="signature"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.NewsTaskApp">
+        android:theme="@style/Theme.NewsTaskApp"
+        android:usesCleartextTraffic="true">
+
+        <!--
+             You can find your app ID in the AdMob UI. For android:value,
+            insert your own AdMob app ID in quotes, as shown below.
+            Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713
+        -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9907841302456691~1845809102" />
+
+        <activity
+            android:name=".view.main.views.activities.AdMobActivityActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main" />
+        <!-- Include the AdActivity configChanges and theme. -->
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent" />
+        <!--
+            Adding this meta data is required as of Google Mobile Ads SDK version 17.0.0 as explained in
+            https://developers.google.com/ad-manager/mobile-ads-sdk/android/quick-start#update_your_androidmanifestxml
+        -->
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true" />
+
         <activity
             android:name=".view.main.views.activities.HomeCycleActivity"
             android:exported="true"
             android:label="@string/title_activity_home_cycle"
-            android:theme="@style/Theme.NewsTaskApp.NoActionBar"
-            >
-
-        </activity>
+            android:theme="@style/Theme.NewsTaskApp.NoActionBar" />
         <activity
             android:name=".view.main.views.activities.HomeCycleActivityKotlin"
             android:exported="true"
             android:label="@string/title_activity_home_cycle"
-            android:theme="@style/Theme.NewsTaskApp.NoActionBar"
-            >
-
-        </activity>
+            android:theme="@style/Theme.NewsTaskApp.NoActionBar" />
         <activity
             android:name=".view.main.views.activities.SplashCycleActivity"
             android:exported="true"
-            android:theme="@style/Theme.NewsTaskApp"
-            >
+            android:theme="@style/Theme.NewsTaskApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -3,6 +3,7 @@ package com.example.newstaskapp.view.main.views.activities;
 import static com.example.newstaskapp.view.main.utils.HelperMethod.replaceFragmentWithAnimation;
 import static com.example.newstaskapp.view.main.utils.HelperMethod.setStatusBar;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,6 +40,7 @@ public class SplashCycleActivity extends BaseActivity {
         Runnable r = new Runnable() {
             public void run() {
                 replaceFragmentWithAnimation(getSupportFragmentManager(), R.id.container, new SecondSplashFragment(), "r");
+                startActivity(new Intent(SplashCycleActivity.this, AdMobActivityActivity.class));
             }
         };
         handler.postDelayed(r, 2500);
