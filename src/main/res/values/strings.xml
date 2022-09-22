@@ -38,6 +38,8 @@
     <!-- -
     This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
     For more information, see https://support.google.com/admob/answer/3052638
+    ca-app-pub-9907841302456691/6487212956
+    ca-app-pub-9907841302456691/8846331721
 <!- -->
     <string name="interstitial_ad_unit_id">ca-app-pub-9907841302456691/8846331721</string>
     <string name="title_activity_main">MainActivity</string>
